@@ -35,11 +35,16 @@ JSON data in an HTML Table.
 ## How to set up
 
 ### With Docker
+1. Clone the repository
+```bash
+git clone https://github.com/mhope-2/grpc-based-microservice.git
+```
+2. Startup services using docker
 ```bash
 docker-compose up 
 ``` 
 
-**NB:** Couldn't get the docker approach up and running on my end due to multiple timeouts, resulting from a recent Internet outage
+**NB:** I couldn't get the docker approach up and running on my end due to multiple timeouts, resulting from a recent Internet outage
 
 ### Without Docker
 This assumes a Unix-based OS, with Python installed

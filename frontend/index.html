@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meter Usage</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Meter Usage Data</h2>
+
+<table id="meterUsageTable">
+    <tr>
+        <th>Time</th>
+        <th>Meter Usage</th>
+    </tr>
+</table>
+
+<script>
+fetch('/meter/usage/')
+    .then(response => response.json())
+    .then(data => {
+        const table = document.getElementById('meterUsageTable');
+
+        data.data.forEach(record => {
+            const row = table.insertRow();
+            const timeCell = row.insertCell(0);
+            const usageCell = row.insertCell(1);
+
+            timeCell.innerHTML = record.time;
+            usageCell.innerHTML = record.meterusage;
+        });
+    });
+</script>
+
+</body>
+</html>

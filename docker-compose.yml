@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  grpc_server:
+    build:
+      context: .
+      dockerfile: Dockerfile.grpc
+    container_name: grpc-server
+    volumes:
+      - .:/grpc
+    ports:
+      - "50051:50051"
+
+  http_server:
+    build:
+      context: .
+      dockerfile: Dockerfile.http
+    container_name: http-server
+    volumes:
+      - .:/app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - grpc_server

@@ -24,11 +24,9 @@ using the defined MeterUsageRequest and in turn returns the time-series data fro
 I also added a test in app_test.py which mocks the request to the gRPC server and asserts the expected response.
 <br>
 
-After, I created a single page frontend client (frontend/index.html) which uses the JavaScript fetch API to make an HTTP GET request  
-to the HTTP server and then render the JSON response in an HTML table.<br>
+After, I created a single page frontend client (frontend/index.html) which uses the JavaScript fetch API to make an HTTP GET request to the HTTP server and then render the JSON response in an HTML table.<br>
 
-So finally, after starting up both servers (using the steps in How to set up below), opening `http://localhost:8081/frontend/index.html`  
-in the browser kicks off the request to the HTTP server which in-turn makes a gRPC call to the gRPC server and then renders the return JSON data in an HTML Table.
+So finally, after starting up both servers (using the steps in How to set up below), opening `http://localhost:8081/frontend/index.html` in the browser kicks off the request to the HTTP server which in-turn makes a gRPC call to the gRPC server and then renders the return JSON data in an HTML Table.
 
 
 ## How to set up

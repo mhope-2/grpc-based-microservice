@@ -17,9 +17,8 @@ using the format defined in the MeterUsageResponse message.
 Also, as mentioned in the Decisions section below, I used a simplified approach for handling NaNs; by replacing them with 0.0.
 <br>
 
-I then created an HTTP server using FastAPI (defined in app.py) which makes a gRPC call to GetMeterUsage function on the gRPC server  
-using the defined MeterUsageRequest and in turn returns the time-series data from the gRPC server in JSON fromat.  
-I also added a test in app_test.py which mocks the request to the gRPC server and asserts the expected response.
+I then created an HTTP server using FastAPI (defined in app.py) which makes a gRPC call to GetMeterUsage function on the gRPC server using the defined MeterUsageRequest and in turn returns the time-series data from the gRPC server in JSON fromat.  
+I also added a test in `app_test.py` which mocks the request to the gRPC server and asserts the expected response.
 <br>
 
 After, I created a single page frontend client (frontend/index.html) which uses the JavaScript fetch API to make an HTTP GET request to the HTTP server and then render the JSON response in an HTML table.<br>

@@ -11,8 +11,7 @@ The system design is represented in the image below:
 </p>
 
 ## Description
-I started by creating the meterusage.proto file to define the contract / specification of request and response to the gRPC server  
-as indicated in MeterUsageService. I then used the grpc tools command together with the meterusage.proto file to generate
+I started by creating the meterusage.proto file to define the contract / specification of request and response to the gRPC server as indicated in MeterUsageService. I then used the grpc tools command together with the meterusage.proto file to generate
 meterusage_pb_2.py and meterusage_pb_2_grpc.py files, which contains the generated client and server classes. Next, I defined GetMeterUsage   
 function under MeterUsageService class in the grpc server file (grpc_serer.py). The function open the meterusage.csv file and serves the data   
 using the format defined in the MeterUsageResponse message.  

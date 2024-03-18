@@ -14,7 +14,7 @@ services:
   http_server:
     build:
       context: .
-      dockerfile: Dockerfile.http
+      dockerfile: Dockerfile.app
     container_name: http-server
     volumes:
       - .:/app

@@ -35,10 +35,12 @@ git clone https://github.com/mhope-2/grpc-based-microservice.git
 ```
 2. Startup services using docker
 ```bash
-docker-compose up 
+docker-compose up
 ``` 
-
-**NB:** I couldn't get the docker approach up and running on my end due to multiple timeouts, resulting from a recent Internet outage
+3. To view the frontend page (make request to the HTTP server), open the link below in your browser
+```angular2html
+http://localhost:8081/frontend/index.html
+```
 
 ### Without Docker
 This assumes a Unix-based OS, with Python installed

@@ -30,10 +30,10 @@
 <script>
 fetch('/meter/usage/')
     .then(response => response.json())
-    .then(data => {
+    .then(res => {
         const table = document.getElementById('meterUsageTable');
 
-        data.data.forEach(record => {
+        res.data.forEach(record => {
             const row = table.insertRow();
             const timeCell = row.insertCell(0);
             const usageCell = row.insertCell(1);

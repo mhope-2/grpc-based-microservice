@@ -1,3 +1,7 @@
+import aiofiles
+import asyncio
+import logging
+
 import csv
 import grpc
 import logging
@@ -12,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 
 class MeterUsageService(meterusage_pb2_grpc.MeterUsageServiceServicer):
-    def GetMeterUsage(self, request, context):
+    async def GetMeterUsage(self, request, context):
         """
         Opens and serves the data in the csv file as defined in MeterUsageResponse in the proto file
         :return:
@@ -20,7 +24,7 @@ class MeterUsageService(meterusage_pb2_grpc.MeterUsageServiceServicer):
         records = []
 
         try:
-            with open('data/meterusage.csv', mode='r') as csvfile:
+            async with aiofiles.open('data/meterusage.csv', mode='r') as csvfile:
                 reader = csv.DictReader(csvfile)
                 for row in reader:
                     # handle NaN records by filling in with 0.0
@@ -35,12 +39,13 @@ class MeterUsageService(meterusage_pb2_grpc.MeterUsageServiceServicer):
 
         return meterusage_pb2.MeterUsageResponse(records=records)
 
-def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+async def serve():
+    server = grpc.aio.server() #grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     meterusage_pb2_grpc.add_MeterUsageServiceServicer_to_server(MeterUsageService(), server)
     server.add_insecure_port('[::]:50051')
-    server.start()
-    server.wait_for_termination()
+    await server.start()
+    await server.wait_for_termination()
 
 if __name__ == '__main__':
-    serve()
+    logging.basicConfig(level=logging.INFO)
+    asyncio.run(serve())

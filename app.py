@@ -17,7 +17,8 @@ async def read_meter_usage():
     Returns the data served by the gRPC server as JSON
     :return:
     """
-    with grpc.insecure_channel('localhost:50051') as channel:
+    # TODO: move to env variable
+    with grpc.insecure_channel("grpc_server:50051") as channel:
         stub = meterusage_pb2_grpc.MeterUsageServiceStub(channel)
         response = stub.GetMeterUsage(meterusage_pb2.MeterUsageRequest())
 

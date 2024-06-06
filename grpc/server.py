@@ -20,7 +20,7 @@ class MeterUsageService(meterusage_pb2_grpc.MeterUsageServiceServicer):
         records = []
 
         try:
-            with open('../data/meterusage.csv', mode='r') as csvfile:
+            with open('data/meterusage.csv', mode='r') as csvfile:
                 reader = csv.DictReader(csvfile)
                 for row in reader:
                     # handle NaN records by filling in with 0.0

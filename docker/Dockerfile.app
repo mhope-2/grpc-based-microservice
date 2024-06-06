@@ -22,4 +22,5 @@ RUN pip install -r requirements.txt
 EXPOSE 8081
 
 # Startup command
-CMD ["uvicorn", "client:app", "--host", "0.0.0.0", "--port", "8081", "--reload"]
+#CMD ["uvicorn", "client:app", "--host", "0.0.0.0", "--port", "8081", "--reload"]
+CMD ["sh", "-c", "cd grpc && uvicorn client:app --host 0.0.0.0 --port 8081 --reload"]

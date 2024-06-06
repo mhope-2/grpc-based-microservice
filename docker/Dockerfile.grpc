@@ -11,13 +11,13 @@ COPY ../data /app/data
 COPY ../requirements.txt /app/requirements.txt
 
 # Install dependencies
-RUN apk update && apk add --no-cache build-base g++ linux-headers
+RUN apk update && apk add build-base g++ linux-headers
 RUN pip install --upgrade pip setuptools wheel
 
 RUN pip install grpcio==1.64.1
 RUN pip install grpcio-tools==1.62.1
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Run server when the container launches
 CMD ["python", "server.py"]

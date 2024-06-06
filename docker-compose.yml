@@ -15,6 +15,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile.app
     container_name: grpc-client
+    env_file: .env
     volumes:
       - .:/app
     ports:

@@ -5,7 +5,7 @@ import math
 
 from concurrent import futures
 
-import meterusage_pb2
+from meterusage_pb2 import MeterUsageResponse, MeterUsageRecord
 import meterusage_pb2_grpc
 
 logger = logging.getLogger(__name__)
@@ -20,20 +20,20 @@ class MeterUsageService(meterusage_pb2_grpc.MeterUsageServiceServicer):
         records = []
 
         try:
-            with open('data/meterusage.csv', mode='r') as csvfile:
+            with open('../data/meterusage.csv', mode='r') as csvfile:
                 reader = csv.DictReader(csvfile)
                 for row in reader:
                     # handle NaN records by filling in with 0.0
                     if math.isnan(float(row["meterusage"])):
-                        records.append(meterusage_pb2.MeterUsageRecord(time=row["time"], meterusage=0.0))
+                        records.append(MeterUsageRecord(time=row["time"], meterusage=0.0))
                     else:
                         records.append(
-                            meterusage_pb2.MeterUsageRecord(time=row["time"], meterusage=float(row["meterusage"]))
+                            MeterUsageRecord(time=row["time"], meterusage=float(row["meterusage"]))
                         )
         except Exception as exc:
             logger.exception(f"Error processing file or file contents; msg={exc}")
 
-        return meterusage_pb2.MeterUsageResponse(records=records)
+        return MeterUsageResponse(records=records)
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

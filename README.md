@@ -61,12 +61,14 @@ source env/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-4. Start the gRPC server in one terminal
+4. Change directory to `grpc` and Start the gRPC server in one terminal
 ```bash
-python grpc_server.py
+cd grpc
+python server.py
 ```
-6. Start the HTTP server on the other terminal
+6. Change directory to `grpc` and Start the gRPC client (HTTP server) on the other terminal
 ```bash
+cd grpc
 uvicorn app:app --reload --port 8081
 ```
 7. To view the frontend page (make request to the HTTP server), open the link below in your browser
@@ -79,6 +81,10 @@ Test command
 ```bash
 pytest
 ```
+
+### Generate Python code from the protobuf file
+
+python -m grpc_tools.protoc -I ../protobufs --python_out=. --grpc_python_out=. ../protobufs/meterusage.proto
 
 ### Decisions
 1. Python builtin csv package vs pandas: I chose the in-built Python csv module to keep things light and simple. I would use a more specialized package like pandas in case of multiple data cleaning steps.
